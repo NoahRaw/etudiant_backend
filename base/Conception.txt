@@ -1,0 +1,39 @@
+Jour 1 - matinee
+Base
+    Produit(idProduit,nom,prixDeRevient)
+    Billet(idBillet,prix)
+    Pack(idPack,nom,idBillet,image)
+    Formule(idFormule,dateFormule,idPack,idProduit,quantite)
+    VenteBillet(idVenteDeBillet,idUtilisateur,dateVente,nomClient,lieuLivraison)
+    DetailVenteBillet(idDetailVenteBillet,idVenteDeBillet,idPack,quantite)
+    PaiementBillet(idPaiementBillet,datePaiement,idVenteDeBillet,montant)
+
+Metier
+    recuperer reste et paye par etudiant
+        alaina daoly ny etudiant
+        manao fonction getPayes
+            alaina table PaiementBillet de joinena @ VenteBillet de atao somme par idUtilisateur
+        manao fonction getMontantTotalApayer
+            alaina table DetailVenteBillet joinena @ VenteBillet joinena @ Pack de aveo joinena @ billet de atao somme(prix*quantite) de groupena par utilisateur
+
+jour 2
+    Base
+        Localisation(idLocalisation,designation)
+        Axe(idAxe,designation)
+        AxeLocalisation(idAxeLocalisation,idAxe,idLocalisation)
+        VenteBillet(idVenteDeBillet,idUtilisateur,dateVente,idAxe)
+    
+    Metier
+        recuper montant de vente de par Pack
+            DetailVenteBillet <- Pack <- Billet , atao prix*quantite group by idPack,nom
+    
+    import csv vente billet
+        base
+            Vente_billet_temp(id_vente_billet_temp,code_pack,quantite,code_vendeur,axe_livraison)
+        
+        Metier
+            insertion csv_to_array
+                fonction csv_to_array puis inserer
+                inserer les donees des differents tables
+                inserer dans le vrai table ventebill
+
