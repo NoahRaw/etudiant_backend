@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 const port = 2000;
 const utilisateurRoutes = require('../routes/utilisateur_routes');
+const billetRoutes = require('../routes/billet_routes');
 
 app.use(express.json());
 
@@ -16,6 +17,7 @@ app.use(cors({
 
 // Utilisation des routes
 app.use('/utilisateurs', utilisateurRoutes);
+app.use('/billet', billetRoutes);
 
 app.listen(port, () => {
   console.log(`Serveur en écoute sur http://localhost:${port}`);
