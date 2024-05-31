@@ -1,8 +1,16 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const utilisateurRoutes = require('../routes/utilisateur_routes');
 
 app.use(express.json());
+
+// Utiliser CORS avec des options spécifiques
+app.use(cors({
+  origin: 'http://localhost:3000', // L'origine que vous souhaitez autoriser
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+}));
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
