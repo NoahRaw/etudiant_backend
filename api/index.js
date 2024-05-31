@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const utilisateurRoutes = require('../routes/utilisateur_routes');
+const billetRoutes = require('../routes/billet_routes');
 
 app.use(express.json());
 
@@ -12,10 +13,9 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
-
 // Utilisation des routes
 app.use('/utilisateurs', utilisateurRoutes);
+app.use('/billet', billetRoutes);
 
 // app.listen(3000, () => console.log("Server ready on port 3000."));
 

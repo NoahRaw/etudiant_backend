@@ -6,9 +6,11 @@ class Billet
     static async create_vente_billet(vente_billet) {
         const {datevente , nomclient , contact , idutilisateur , idlocalisation} = vente_billet
         const result = await pool.query(
-          'INSERT INTO utilisateur (datevente , nomclient , idutilisateur , idlocalisation) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+          'INSERT INTO ventebillet (datevente , nomclient , contact , idutilisateur , idlocalisation) VALUES ($1, $2, $3, $4, $5) RETURNING *',
           [datevente , nomclient , contact , idutilisateur , idlocalisation]
         );
+
+        return result.rows[0];
     }
 
     // get_all_user
