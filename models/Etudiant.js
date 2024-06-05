@@ -19,9 +19,9 @@ class Etudiant {
 
     static async get_nbr_billet_etudiant()
     {
-        all_user=Utilisateur.get_all_user();
-        all_billet=Billet.get_all_billet();
-        result={};
+        const all_user=Utilisateur.get_all_user();
+        const all_billet=Billet.get_all_billet();
+        const result={};
 
         all_user.forEach(user => {
             all_billet.forEach(billet => {

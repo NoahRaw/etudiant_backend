@@ -26,11 +26,9 @@ class Billet
       for (let i = 0; i < rows.length ; i++) {
         const row=rows[i];
         const user={
-          datevente : row.datevente, 
-          nomclient : row.nomclient,
-          contact : row.contact,
-          idutilisateur : row.idutilisateur, 
-          idlocalisation : row.idlocalisation};
+          idbillet : row.idbillet, 
+          prix : row.prix
+          };
         list_object.push(user);
       }
 
