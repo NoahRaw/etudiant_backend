@@ -95,8 +95,3 @@ Select
 From
     vente_billet_temp join VenteBillet
         on vente_billet_temp.date=VenteBillet.datevente and vente_billet_temp.code_vendeur=VenteBillet.idUtilisateur and vente_billet_temp.axe_livraison=VenteBillet.idLocalisation;
-
-
-SELECT * FROM "stock" WHERE ("idstock" LIKE '%PointDeVente 1%' OR "idpointdevente" LIKE '%PointDeVente 1%' OR "entre" LIKE '%PointDeVente 1%' OR "sortie" LIKE '%PointDeVente 1%' OR "prix" LIKE '%PointDeVente 1%' OR "etat" LIKE '%PointDeVente 1%') LIMIT 10;
-
-SELECT * FROM stock WHERE CONCAT_WS(' ', idstock, idpointdevente, entre) LIKE '%PointDeVente 1%';
