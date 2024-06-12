@@ -34,6 +34,18 @@ class Billet
 
       return list_object;
     }
+
+    // get_all_packs
+    static async get_all_packs()
+    {
+      const result = await pool.query(
+        'SELECT * FROM pack'
+      );
+
+      var rows=result.rows;
+
+      return rows;
+    }
 }
 
 module.exports = Billet;

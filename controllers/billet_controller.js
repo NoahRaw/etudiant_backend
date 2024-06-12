@@ -11,3 +11,15 @@ exports.create_vente_billet = async (req, res) => {
       res.status(400).json({ error: error.message });
     }
 };
+
+// get_all_packs
+exports.get_all_packs = async (req, res) => {
+  try {
+    const result =await Billet.get_all_packs();
+
+    res.status(201).json(result);
+  } catch (error) {
+    console.error('error:', error);
+    res.status(400).json({ error: error.message });
+  }
+};
