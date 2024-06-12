@@ -11,9 +11,12 @@ app.use(express.json());
 // Utiliser CORS avec des options spécifiques
 app.use(cors({
   origin: 'https://etudiant.netlify.app', // L'origine que vous souhaitez autoriser
+  optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
+
+app.use(cors(corsOptions));
 
 // Utilisation des routes
 app.use('/utilisateurs', utilisateurRoutes);
