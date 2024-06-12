@@ -24,3 +24,11 @@ exports.get_all_packs = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+// Route pour recevoir et traiter le fichier CSV
+exports.csv = async (req, res) => {
+  const filePath = req.file.path;
+  const results = [];
+
+  res.status(201);
+};
