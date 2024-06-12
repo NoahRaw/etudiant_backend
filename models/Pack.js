@@ -17,6 +17,38 @@ class Pack
           [idpack , idproduit , quantite]
         );
     }
+
+    static async get_montant_par_pack()
+    {
+        const result = await pool.query(
+            'select * from v_montant_par_pack'
+        );
+    
+        try {
+            const rows = result.rows;  
+            
+            return rows;
+          } catch (error) {
+            console.error('error:',error);
+          }
+    }
+
+    // montant_par_pack
+    static async get_v_montant_par_pack()
+    {
+        const result1= await Pack.get_montant_par_pack();
+        const result2={
+          nom : [],
+          montant_par_pack : []
+        };
+
+        result1.forEach(e1 => {
+          result2['nom'].push(e1['nom']);
+          result2['montant_par_pack'].push(e1['montant_par_pack']);
+        });
+
+      return result2;
+    }
 }
 
 module.exports = Pack;
