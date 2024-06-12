@@ -9,9 +9,10 @@ exports.login = async (req, res) => {
       user.mail = info_login.mail;
       user.mdp = info_login.mdp;
       const can_connect = await user.login();
+      console.log(user);
 
       if(can_connect)
-        res.status(201).json(user);
+        res.status(201).json(user.toJSON());
       else
         res.status(403).json({ error: 'Les informations de connexions sont incorrectes' });
     } catch (error) {
@@ -46,6 +47,18 @@ exports.stat_billet_etudiant = async (req, res) => {
     );
   } catch (error) {
     console.error(error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.sign_in = async (req, res) => {
+  try {
+    const utilisateur = req.body;
+    
+    const result = await Utilisateur.sign_in(utilisateur);
+
+    res.status(201).json(result);
+  } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };

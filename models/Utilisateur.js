@@ -2,21 +2,21 @@ const pool = require('../services/db.js');
 const Billet = require('./Billet.js');
 
 class Utilisateur {
-    constructor(idUtilisateur, nom, mail, mdp, profil) {
-      this.idUtilisateur = idUtilisateur;
+    constructor(idutilisateur, nom, mail, mdp, profil) {
+      this.idutilisateur = idutilisateur;
       this.nom = nom;
       this.mail = mail;
       this.mdp = mdp;
       this.profil = profil;
     }
   
-    // Getter et setter pour idUtilisateur
-    get idUtilisateur() {
-      return this._idUtilisateur;
+    // Getter et setter pour idutilisateur
+    get idutilisateur() {
+      return this._idutilisateur;
     }
   
-    set idUtilisateur(value) {
-      this._idUtilisateur = value;
+    set idutilisateur(value) {
+      this._idutilisateur = value;
     }
   
     // Getter et setter pour nom
@@ -59,7 +59,7 @@ class Utilisateur {
     async deleteUtilisateur() {
       const result = await pool.query(
         'DELETE FROM utilisateur WHERE idutilisateur = $1 RETURNING *',
-        [this._idUtilisateur]
+        [this._idutilisateur]
       );
       const row = result.rows[0];
       const user = new Utilisateur(row.idutilisateur, row.nom, row.mail, row.mdp, row.profil);
@@ -76,12 +76,30 @@ class Utilisateur {
 
       try {
         const row = result.rows[0];  
-        this.idUtilisateur = row.idutilisateur
-        this.profil = row.profil
+        this.idutilisateur = row.idutilisateur;
+        this.profil = row.profil;
         return true;
       } catch (error) {
         console.error('error:',error)
         return false;
+      }
+    }
+
+    // sign-in
+    static async sign_in(utilisateur)
+    {
+      const {nom,mail,mdp} = utilisateur;
+      const result = await pool.query(
+        'INSERT INTO utilisateur(nom,mail,mdp) VALUES($1,$2,$3) RETURNING *',
+        [nom,mail,mdp]
+      );
+
+      try {
+        const row = result.rows[0];  
+
+        return row;
+      } catch (error) {
+        console.error('error:',error);
       }
     }
 
@@ -123,7 +141,7 @@ class Utilisateur {
     // Méthode pour retourner l'objet utilisateur sous forme de JSON
     toJSON() {
       return {
-        id: this.id,
+        idutilisateur: this.idutilisateur,
         nom: this.nom,
         mail: this.mail,
         mdp: this.mdp,
@@ -141,7 +159,6 @@ class Utilisateur {
             const row = result.rows[0];  
             return row.sum;
           } catch (error) {
-            console.error('error:',error)
             return 0;
           }
     }
