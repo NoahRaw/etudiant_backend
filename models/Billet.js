@@ -54,6 +54,25 @@ class Billet
 
       return rows;
     }
+
+    // create_vente_billet_temp
+    static async create_Vente_billet_temp(results)
+    {
+      for (const row of results) {
+        const query = `
+          INSERT INTO Vente_billet_temp (code_pack, date, quantite, code_vendeur, axe_livraison)
+          VALUES ($1, $2, $3, $4, $5)
+        `;
+        const values = [
+          row.code_pack,
+          row.date,
+          row.quantite,
+          row.code_vendeur,
+          row.axe_livraison,
+        ];
+        // await pool.query(query, values);
+      }
+    }
 }
 
 module.exports = Billet;
