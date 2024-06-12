@@ -85,6 +85,24 @@ class Utilisateur {
       }
     }
 
+    // sign-in
+    static async sign_in(utilisateur)
+    {
+      const {nom,mail,mdp} = utilisateur;
+      const result = await pool.query(
+        'INSERT INTO utilisateur(nom,mail,mdp) VALUES($1,$2,$3) RETURNING *',
+        [nom,mail,mdp]
+      );
+
+      try {
+        const row = result.rows[0];  
+
+        return row;
+      } catch (error) {
+        console.error('error:',error);
+      }
+    }
+
     // get_all_user
     static async get_all_user()
     {

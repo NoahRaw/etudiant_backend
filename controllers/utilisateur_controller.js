@@ -49,3 +49,15 @@ exports.stat_billet_etudiant = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+exports.sign_in = async (req, res) => {
+  try {
+    const utilisateur = req.body;
+    
+    const result = await Utilisateur.sign_in(utilisateur);
+
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
