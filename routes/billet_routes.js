@@ -8,6 +8,6 @@ const upload = multer({ dest: 'uploads/' });
 
 router.post('/vente', utilisateurController.create_vente_billet);
 router.post('/csv', upload.single('file'), utilisateurController.csv);
-router.get('/get_all_packs', utilisateurController.get_all_packs);
+// router.get('/get_all_packs', utilisateurController.get_all_packs);
 
 module.exports = router;
