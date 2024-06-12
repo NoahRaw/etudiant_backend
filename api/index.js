@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 2000;
+// const port = 2000;
 const utilisateurRoutes = require('../routes/utilisateur_routes');
 const billetRoutes = require('../routes/billet_routes');
 
@@ -19,8 +19,8 @@ app.use(cors({
 app.use('/utilisateurs', utilisateurRoutes);
 app.use('/billet', billetRoutes);
 
-app.listen(port, () => {
-  console.log(`Serveur en écoute sur http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Serveur en écoute sur http://localhost:${port}`);
+// });
 
 module.exports = app;
