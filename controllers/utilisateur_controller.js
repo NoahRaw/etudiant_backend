@@ -3,20 +3,21 @@ const Utilisateur = require('../models/Utilisateur');
 const Billet = require('../models/Billet');
 
 exports.login = async (req, res) => {
-    try {
-      const info_login = req.body;
-      const user = new Utilisateur();
-      user.mail = info_login.mail;
-      user.mdp = info_login.mdp;
-      const can_connect = await user.login();
+  try {
+    const info_login = req.body;
+    const user = new Utilisateur();
+    user.mail = info_login.mail;
+    user.mdp = info_login.mdp;
+    const can_connect = await user.login();
+    console.log(user);
 
-      if(can_connect)
-        res.status(201).json(user);
-      else
-        res.status(403).json({ error: 'Les informations de connexions sont incorrectes' });
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
+    if(can_connect)
+      res.status(201).json(user.toJSON());
+    else
+      res.status(403).json({ error: 'Les informations de connexions sont incorrectes' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
 exports.get_all_localisation = async (req, res) => {
