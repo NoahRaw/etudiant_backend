@@ -10,9 +10,7 @@ app.use(express.json());
 
 // Utiliser CORS avec des options spécifiques
 app.use(cors({
-  origin: 'https://etudiant-backend.vercel.app/', // L'origine que vous souhaitez autoriser
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
+  origin: 'https://etudiant.netlify.app'
 }));
 
 // Utilisation des routes
